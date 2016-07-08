@@ -57,9 +57,12 @@
                 textspan = '<span class="city-picker-span" style="' +
                     this.getWidthStyle(p.width) + 'height:auto;line-height:' + (p.height - 1) + 'px;">' +
                     (placeholder ? '<span class="placeholder">' + (placeholder.replace(/\s+/g,"")==''?'&nbsp;':placeholder) + '</span>' : '') +
-                    '<span class="title"></span><div class="arrow"></div>' + '</span>',
+                    '<span class="title"></span><div class="arrow"></div>' + '</span>';
+            this.$element.addClass('city-picker-input');
+            this.$detailElement.addClass('city-picker-input');
+            this.$textspan = $(textspan).insertAfter(this.$element);
 
-                dropdown = '<div class="city-picker-dropdown col-md-12" style="left:0px;top:100%;">' +
+            var dropdown = '<div class="city-picker-dropdown" style="left:0px;top:100%;">' +
                     '<div class="city-select-wrap">' +
                     '<div class="city-select-tab">' +
                     '<a class="active" data-count="province">省份</a>' +
@@ -78,9 +81,7 @@
                     '</div></div>' : '') +
                     '</div></div>';
 
-            this.$element.addClass('city-picker-input');
-            this.$detailElement.addClass('city-picker-input');
-            this.$textspan = $(textspan).insertAfter(this.$element);
+
             this.$dropdown = $(dropdown).insertAfter(this.$textspan);
             var $select = this.$dropdown.find('.city-select');
 
@@ -140,7 +141,7 @@
             s = this.getSize(this.$element);
             h = s.height;
             w = s.width;
-            pw = this.$element.offsetParent().width();
+            pw = this.$element.parent().width();
             if (pw) {
                 w = w / pw;
                 if (w > 0.99) {
